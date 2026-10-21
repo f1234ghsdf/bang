@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10月21日 · 视频</title>
+<style>
+  :root {
+    --bg: #f1f4fb;
+    --panel: #ffffff;
+    --panel2: #f6f8ff;
+    --navy: #2f3e6e;
+    --line: rgba(47, 62, 110, .18);
+    --line-soft: rgba(47, 62, 110, .10);
+    --pink: #ff5fa2;
+    --purple: #8a6cff;
+    --cyan: #38bdf0;
+    --yellow: #ffc94d;
+    --green: #4fd6a8;
+    --text: #2a3352;
+    --text-dim: #7781a0;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    min-height: 100vh;
+    font-family: "Yu Gothic UI", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Segoe UI", "Segoe UI Emoji", sans-serif;
+    color: var(--text);
+    background:
+      radial-gradient(1100px 760px at 88% -12%, rgba(255,95,162,.14), transparent 60%),
+      radial-gradient(980px 720px at -10% 16%, rgba(138,108,255,.13), transparent 60%),
+      radial-gradient(900px 700px at 108% 68%, rgba(56,189,240,.13), transparent 60%),
+      var(--bg);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---- 装饰层 ---- */
+  .gridlines {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(47,62,110,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(47,62,110,.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .stripes {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(135deg, rgba(47,62,110,.025) 0 2px, transparent 2px 26px);
+  }
+  .blob {
+    position: fixed;
+    z-index: 0;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: .5;
+    pointer-events: none;
+  }
+  .blob.b1 { width: 560px; height: 560px; background: #ffc7dd; top: -180px; left: -160px; animation: blobFloat 18s ease-in-out infinite; }
+  .blob.b2 { width: 520px; height: 520px; background: #cfc4ff; bottom: -200px; right: -150px; animation: blobFloat 22s ease-in-out infinite reverse; }
+  .blob.b3 { width: 400px; height: 400px; background: #bfe9ff; top: 28%; right: 10%; animation: blobFloat 20s ease-in-out infinite; }
+  .blob.b4 { width: 340px; height: 340px; background: #ffe6b3; bottom: 14%; left: 8%; animation: blobFloat 24s ease-in-out infinite; }
+
+  @keyframes blobFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(30px, -24px) scale(1.08); }
+    66%      { transform: translate(-22px, 20px) scale(.94); }
+  }
+
+  .aurora {
+    position: fixed;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: .3;
+  }
+  .aurora.a1 {
+    width: 76vmax; height: 76vmax;
+    top: -32vmax; left: -26vmax;
+    background: conic-gradient(from 90deg, #ffc7dd, #cfc4ff, #bfe9ff, #d7f7ec, #ffe6b3, #ffc7dd);
+    animation: spinSlow 54s linear infinite;
+  }
+  .aurora.a2 {
+    width: 62vmax; height: 62vmax;
+    right: -28vmax; bottom: -28vmax;
+    background: conic-gradient(from 210deg, #cfc4ff, #ffc7dd, #ffe6b3, #bfe9ff, #cfc4ff);
+    animation: spinSlow 70s linear infinite reverse;
+  }
+  @keyframes spinSlow { to { transform: rotate(360deg); } }
+
+  .grain {
+    position: fixed;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: .05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grain 8s steps(10) infinite;
+  }
+  @keyframes grain {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -8%); }
+    20% { transform: translate(-12%, 3%); }
+    30% { transform: translate(7%, -15%); }
+    40% { transform: translate(-5%, 18%); }
+    50% { transform: translate(-12%, 8%); }
+    60% { transform: translate(8%, 0); }
+    70% { transform: translate(0, 12%); }
+    80% { transform: translate(3%, 15%); }
+    90% { transform: translate(-8%, 8%); }
+  }
+
+  .dots {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: .6;
+    background-image: radial-gradient(rgba(47,62,110,.10) 1px, transparent 1.3px);
+    background-size: 8px 8px;
+  }
+
+  .fx {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .fx span {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    font-family: "Segoe UI Emoji", "Segoe UI Symbol", "Apple Color Emoji", sans-serif;
+    will-change: transform, opacity;
+    animation: floatUp var(--d, 18s) linear var(--delay, 0s) infinite;
+    text-shadow: 0 1px 6px rgba(47,62,110,.18);
+  }
+
+  @keyframes floatUp {
+    0%   { transform: translateY(0) translateX(0) rotate(0deg) scale(.9); opacity: 0; }
+    8%   { opacity: var(--o, .5); }
+    88%  { opacity: var(--o, .5); }
+    100% { transform: translateY(-112vh) translateX(var(--dx, 20px)) rotate(18deg) scale(1.05); opacity: 0; }
+  }
+
+  /* ---- 主舞台 ---- */
+  .stage {
+    position: relative;
+    z-index: 2;
+    width: min(980px, 94vw);
+    margin: 0 auto;
+    padding: 34px 0 52px;
+  }
+
+  .chars {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .char {
+    position: absolute;
+    width: 138px;
+    aspect-ratio: 120 / 168;
+    opacity: .9;
+    filter: drop-shadow(0 8px 18px rgba(47,62,110,.18));
+    animation: charFloat 7s ease-in-out infinite;
+  }
+  .char.c1 { left: 3vw; bottom: 7vh; }
+  .char.c2 { right: 3vw; top: 9vh; animation-delay: -1.8s; }
+  .char.c3 { left: 7vw; top: 7vh; width: 120px; animation-delay: -3.2s; }
+  .char.c4 { right: 7vw; bottom: 5vh; width: 126px; animation-delay: -4.6s; }
+  .char.c5 { left: 2vw; top: 46%; width: 116px; animation-delay: -2.6s; }
+  .char-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .char-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: none;
+  }
+
+  @keyframes charFloat {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50%      { transform: translateY(-10px) rotate(2deg); }
+  }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    padding: 0 4px;
+  }
+  .np {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .np-label {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: var(--text);
+  }
+  .np-label::after { content: " ▍"; color: var(--cyan); animation: blink 1.2s steps(2, start) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .eq {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 18px;
+  }
+  .eq i {
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(to top, var(--pink), var(--purple));
+    animation: eq 1s ease-in-out infinite;
+  }
+  .eq i:nth-child(1) { animation-delay: 0s; }
+  .eq i:nth-child(2) { animation-delay: .15s; }
+  .eq i:nth-child(3) { animation-delay: .3s; }
+  .eq i:nth-child(4) { animation-delay: .45s; }
+  .eq i:nth-child(5) { animation-delay: .6s; }
+  @keyframes eq { 0%, 100% { height: 30%; } 50% { height: 100%; } }
+  .live {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #fff;
+    background: var(--pink);
+    padding: 4px 10px;
+    clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+    box-shadow: 0 0 16px rgba(255,79,163,.45);
+  }
+
+  .player {
+    position: relative;
+    background: linear-gradient(180deg, rgba(255,255,255,.94), rgba(246,248,255,.9));
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 12px;
+    box-shadow: 0 30px 80px rgba(47,62,110,.16), 0 0 50px rgba(255,95,162,.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .corner {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--cyan);
+    z-index: 3;
+    pointer-events: none;
+    filter: drop-shadow(0 0 6px rgba(79,216,255,.5));
+  }
+  .corner.tl { top: -2px; left: -2px; border-right: 0; border-bottom: 0; }
+  .corner.tr { top: -2px; right: -2px; border-left: 0; border-bottom: 0; border-color: var(--pink); filter: drop-shadow(0 0 6px rgba(255,79,163,.5)); }
+  .corner.bl { bottom: -2px; left: -2px; border-right: 0; border-top: 0; border-color: var(--purple); filter: drop-shadow(0 0 6px rgba(154,123,255,.5)); }
+  .corner.br { bottom: -2px; right: -2px; border-left: 0; border-top: 0; border-color: var(--navy); filter: drop-shadow(0 0 6px rgba(47,62,110,.35)); }
+
+  .video-wrap {
+    position: relative;
+    overflow: hidden;
+    background: #05070c;
+    clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+    box-shadow: inset 0 0 0 1px rgba(124,150,255,.18);
+  }
+
+  video {
+    display: block;
+    width: 100%;
+    max-height: 66vh;
+    background: #05070c;
+    object-fit: contain;
+    cursor: pointer;
+  }
+
+  .start-overlay {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    color: #fff;
+    background: radial-gradient(circle at 50% 45%, rgba(154,123,255,.35), rgba(5,7,12,.84));
+    cursor: pointer;
+  }
+  .start-overlay.show { display: flex; }
+  .big-play {
+    width: 84px;
+    height: 84px;
+    border: none;
+    border-radius: 50%;
+    font-size: 30px;
+    color: #fff;
+    padding-left: 6px;
+    background: linear-gradient(135deg, var(--cyan), var(--purple));
+    box-shadow: 0 0 26px rgba(79,216,255,.5);
+    cursor: pointer;
+    animation: beat 1.8s ease-in-out infinite;
+  }
+  .start-overlay span { font-size: 14px; letter-spacing: 2px; opacity: .9; }
+
+  @keyframes beat {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.07); }
+  }
+
+  .hint {
+    position: absolute;
+    left: 50%;
+    bottom: 14px;
+    transform: translateX(-50%);
+    padding: 7px 14px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--text);
+    background: rgba(9,11,17,.74);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .5s ease;
+  }
+  .hint.show { opacity: 1; }
+
+  /* ---- 控制栏 ---- */
+  .controls { margin-top: 12px; }
+
+  .ctl-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .ctl {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-size: 16px;
+    color: var(--text);
+    background: rgba(255,255,255,.82);
+    cursor: pointer;
+    transition: transform .15s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease;
+  }
+  .ctl:hover { transform: translateY(-2px); border-color: var(--pink); color: var(--pink); box-shadow: 0 0 14px rgba(255,95,162,.18); }
+  .ctl:active { transform: translateY(0) scale(.95); }
+  .ctl.play {
+    width: 46px; height: 46px; font-size: 18px;
+    color: #fff;
+    background: var(--navy);
+    border-color: transparent;
+    box-shadow: 0 6px 18px rgba(47,62,110,.3);
+  }
+  .ctl.play:hover { color: #fff; }
+
+  .time {
+    flex: none;
+    font-size: 12.5px;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+
+  .progress {
+    position: relative;
+    flex: 1 1 auto;
+    height: 18px;
+    cursor: pointer;
+    touch-action: none;
+  }
+  .progress-track,
+  .progress-buffered,
+  .progress-fill {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 6px;
+  }
+  .progress-track { width: 100%; background: rgba(47,62,110,.12); }
+  .progress-buffered { width: 0%; background: rgba(47,62,110,.22); }
+  .progress-fill {
+    width: 0%;
+    background: linear-gradient(90deg, var(--cyan), var(--purple), var(--pink));
+  }
+  .progress-thumb {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    background: var(--navy);
+    border: 2px solid #fff;
+    box-shadow: 0 0 10px rgba(47,62,110,.4);
+    transform: translate(-50%, -50%) rotate(45deg);
+    pointer-events: none;
+    transition: transform .12s ease;
+  }
+  .progress:hover .progress-thumb { transform: translate(-50%, -50%) rotate(45deg) scale(1.2); }
+
+  .vol {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: none;
+    width: 92px;
+    height: 6px;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(to right, var(--pink) var(--val, 80%), rgba(47,62,110,.12) var(--val, 80%));
+  }
+  .vol::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    background: var(--navy);
+    border: 2px solid #fff;
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px rgba(47,62,110,.4);
+  }
+  .vol::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: var(--navy);
+    border: 2px solid #fff;
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px rgba(47,62,110,.4);
+  }
+
+  .speed-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line-soft);
+  }
+  .speed-label {
+    flex: none;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+  }
+  .speeds {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .speed-btn {
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--text-dim);
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    clip-path: polygon(7px 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%, 0 7px);
+    transition: color .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+  }
+  .speed-btn:hover { border-color: var(--pink); color: var(--pink); }
+  .speed-btn.active {
+    color: #fff;
+    background: var(--navy);
+    border-color: transparent;
+    box-shadow: 0 5px 16px rgba(47,62,110,.3);
+  }
+
+  .foot {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    opacity: .7;
+  }
+
+  @media (max-width: 640px) {
+    .stage { padding-top: 20px; }
+    .ctl-row { flex-wrap: wrap; }
+    .progress { order: 5; flex-basis: 100%; height: 16px; }
+    .vol { width: 80px; }
+    .topbar { margin-bottom: 10px; }
+  }
+
+  @media (max-width: 760px) {
+    .char { width: 88px; opacity: .55; }
+    .char.c2, .char.c4, .char.c5 { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body, .blob, .fx span, .big-play, .aurora, .grain, .eq i, .np-label::after { animation: none !important; }
+    .fx, .blob, .aurora, .grain { display: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="gridlines"></div>
+  <div class="stripes"></div>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="blob b4"></div>
+  <div class="aurora a1"></div>
+  <div class="aurora a2"></div>
+  <div class="dots"></div>
+  <div class="grain"></div>
+  <div class="fx" aria-hidden="true"></div>
+  <div class="chars" aria-hidden="true"></div>
+
+  <main class="stage">
+    <header class="topbar">
+      <div class="np">
+        <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <span class="np-label">NOW PLAYING</span>
+      </div>
+      <span class="live">LIVE ♪</span>
+    </header>
+
+    <section class="player" id="player">
+      <span class="corner tl"></span>
+      <span class="corner tr"></span>
+      <span class="corner bl"></span>
+      <span class="corner br"></span>
+
+      <div class="video-wrap" id="videoWrap">
+        <!-- 部署到 GitHub Pages 时：压缩后的视频保存为同名 10月21日.mp4 就无需改这里；若改了文件名，请同步修改 src。 -->
+        <video id="video" src="10月21日.mp4" playsinline preload="metadata"></video>
+
+        <div class="start-overlay" id="startOverlay">
+          <button class="big-play" id="bigPlay" aria-label="播放">▶</button>
+          <span>点 击 开 始 播 放</span>
+        </div>
+
+        <div class="hint" id="hint">🎵 已自动播放（静音中）· 点喇叭开启声音</div>
+      </div>
+
+      <div class="controls">
+        <div class="ctl-row">
+          <button class="ctl play" id="playBtn" aria-label="播放/暂停">▶</button>
+          <span class="time"><span id="cur">00:00</span> / <span id="dur">00:00</span></span>
+
+          <div class="progress" id="progress" aria-label="播放进度">
+            <div class="progress-track"></div>
+            <div class="progress-buffered" id="buffered"></div>
+            <div class="progress-fill" id="fill"></div>
+            <div class="progress-thumb" id="thumb"></div>
+          </div>
+
+          <button class="ctl" id="muteBtn" aria-label="静音/取消静音">🔊</button>
+          <input class="vol" id="vol" type="range" min="0" max="1" step="0.01" value="0.8" aria-label="音量">
+          <button class="ctl" id="fsBtn" aria-label="全屏">⛶</button>
+        </div>
+
+        <div class="speed-row">
+          <span class="speed-label">倍速</span>
+          <div class="speeds" id="speeds">
+            <button class="speed-btn" data-rate="2">x2</button>
+            <button class="speed-btn" data-rate="1.5">x1.5</button>
+            <button class="speed-btn" data-rate="1.25">x1.25</button>
+            <button class="speed-btn active" data-rate="1">x1</button>
+            <button class="speed-btn" data-rate="0.75">x0.75</button>
+            <button class="speed-btn" data-rate="0.5">x0.5</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="foot">♪ 祝 你 今 天 也 元 气 满 满 ♪</p>
+  </main>
+
+<script>
+  (function () {
+    const video = document.getElementById('video');
+    const playBtn = document.getElementById('playBtn');
+    const bigPlay = document.getElementById('bigPlay');
+    const startOverlay = document.getElementById('startOverlay');
+    const hint = document.getElementById('hint');
+    const curEl = document.getElementById('cur');
+    const durEl = document.getElementById('dur');
+    const progress = document.getElementById('progress');
+    const fill = document.getElementById('fill');
+    const buffered = document.getElementById('buffered');
+    const thumb = document.getElementById('thumb');
+    const muteBtn = document.getElementById('muteBtn');
+    const vol = document.getElementById('vol');
+    const fsBtn = document.getElementById('fsBtn');
+    const player = document.getElementById('player');
+    const videoWrap = document.getElementById('videoWrap');
+    const speedBtns = Array.from(document.querySelectorAll('.speed-btn'));
+
+    let dragging = false;
+    let startedMuted = false;
+    let hintTimer = null;
+
+    function fmt(sec) {
+      if (!isFinite(sec) || sec < 0) sec = 0;
+      sec = Math.floor(sec);
+      const h = Math.floor(sec / 3600);
+      const m = Math.floor((sec % 3600) / 60);
+      const s = sec % 60;
+      const mm = String(m).padStart(2, '0');
+      const ss = String(s).padStart(2, '0');
+      return h > 0 ? h + ':' + mm + ':' + ss : mm + ':' + ss;
+    }
+
+    function updatePlayUI() {
+      playBtn.textContent = video.paused ? '▶' : '⏸';
+      startOverlay.classList.remove('show');
+    }
+
+    function updateTime() {
+      curEl.textContent = fmt(video.currentTime);
+      if (isFinite(video.duration) && video.duration > 0) {
+        durEl.textContent = fmt(video.duration);
+        const pct = (video.currentTime / video.duration) * 100;
+        fill.style.width = pct + '%';
+        thumb.style.left = pct + '%';
+      }
+    }
+
+    function updateBuffered() {
+      try {
+        if (video.buffered.length && isFinite(video.duration) && video.duration > 0) {
+          const end = video.buffered.end(video.buffered.length - 1);
+          buffered.style.width = Math.min(100, (end / video.duration) * 100) + '%';
+        }
+      } catch (e) {}
+    }
+
+    function updateVolUI() {
+      vol.style.setProperty('--val', (video.volume * 100) + '%');
+      const v = video.muted ? 0 : video.volume;
+      muteBtn.textContent = v === 0 ? '🔇' : (v < 0.5 ? '🔉' : '🔊');
+      if (!video.muted && video.volume > 0) hideHint();
+    }
+
+    function seekFromEvent(e) {
+      if (!isFinite(video.duration) || video.duration <= 0) return;
+      const rect = progress.getBoundingClientRect();
+      let ratio = (e.clientX - rect.left) / rect.width;
+      ratio = Math.max(0, Math.min(1, ratio));
+      video.currentTime = ratio * video.duration;
+      updateTime();
+    }
+
+    progress.addEventListener('pointerdown', function (e) {
+      dragging = true;
+      progress.setPointerCapture(e.pointerId);
+      seekFromEvent(e);
+    });
+    progress.addEventListener('pointermove', function (e) {
+      if (dragging) seekFromEvent(e);
+    });
+    ['pointerup', 'pointercancel'].forEach(function (ev) {
+      progress.addEventListener(ev, function () { dragging = false; });
+    });
+
+    function togglePlay() {
+      if (video.paused) {
+        video.play().catch(function () {});
+      } else {
+        video.pause();
+      }
+    }
+
+    playBtn.addEventListener('click', togglePlay);
+    videoWrap.addEventListener('click', function (e) {
+      if (startOverlay.classList.contains('show') && (e.target === startOverlay || startOverlay.contains(e.target))) {
+        video.play().catch(function () {});
+        return;
+      }
+      togglePlay();
+    });
+    bigPlay.addEventListener('click', function (e) {
+      e.stopPropagation();
+      video.play().catch(function () {});
+    });
+
+    muteBtn.addEventListener('click', function () {
+      video.muted = !video.muted;
+      updateVolUI();
+    });
+
+    vol.addEventListener('input', function () {
+      video.volume = parseFloat(vol.value);
+      video.muted = false;
+      updateVolUI();
+    });
+
+    speedBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const rate = parseFloat(btn.dataset.rate);
+        video.playbackRate = rate;
+        speedBtns.forEach(function (b) { b.classList.toggle('active', b === btn); });
+      });
+    });
+
+    fsBtn.addEventListener('click', function () {
+      if (document.fullscreenElement) {
+        document.exitFullscreen && document.exitFullscreen();
+      } else if (player.requestFullscreen) {
+        player.requestFullscreen();
+      }
+    });
+
+    video.addEventListener('loadedmetadata', function () {
+      durEl.textContent = fmt(video.duration);
+      updateTime();
+    });
+    video.addEventListener('timeupdate', function () {
+      if (!dragging) updateTime();
+    });
+    video.addEventListener('progress', updateBuffered);
+    video.addEventListener('play', updatePlayUI);
+    video.addEventListener('pause', updatePlayUI);
+    video.addEventListener('volumechange', updateVolUI);
+    video.addEventListener('ratechange', function () {
+      const r = video.playbackRate;
+      speedBtns.forEach(function (b) {
+        b.classList.toggle('active', Math.abs(parseFloat(b.dataset.rate) - r) < 0.001);
+      });
+    });
+    video.addEventListener('error', function () {
+      startOverlay.classList.add('show');
+      startOverlay.querySelector('span').textContent = '视频加载失败，请确认 10月21日.mp4 与网页在同一文件夹';
+    });
+
+    function showHint() {
+      hint.classList.add('show');
+      clearTimeout(hintTimer);
+      hintTimer = setTimeout(function () { hint.classList.remove('show'); }, 6500);
+    }
+    function hideHint() {
+      if (!startedMuted) return;
+      hint.classList.remove('show');
+      clearTimeout(hintTimer);
+    }
+
+    // 自动播放：先尝试带声音，浏览器拦截则退回静音播放，再失败则显示点击播放
+    function autoplay() {
+      video.play().then(function () {
+        startedMuted = false;
+        updatePlayUI();
+      }).catch(function () {
+        video.muted = true;
+        startedMuted = true;
+        video.play().then(function () {
+          updatePlayUI();
+          updateVolUI();
+          showHint();
+        }).catch(function () {
+          startOverlay.classList.add('show');
+        });
+      });
+    }
+
+    video.volume = parseFloat(vol.value);
+    updateVolUI();
+    autoplay();
+
+    document.addEventListener('keydown', function (e) {
+      const tag = (document.activeElement && document.activeElement.tagName) || '';
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+      switch (e.key) {
+        case ' ': e.preventDefault(); togglePlay(); break;
+        case 'ArrowLeft': video.currentTime = Math.max(0, video.currentTime - 5); break;
+        case 'ArrowRight': video.currentTime = Math.min(video.duration || 0, video.currentTime + 5); break;
+        case 'ArrowUp': e.preventDefault(); video.volume = Math.min(1, video.volume + 0.1); video.muted = false; updateVolUI(); break;
+        case 'ArrowDown': e.preventDefault(); video.volume = Math.max(0, video.volume - 0.1); video.muted = false; updateVolUI(); break;
+        case 'm': case 'M': video.muted = !video.muted; updateVolUI(); break;
+        case 'f': case 'F': fsBtn.click(); break;
+      }
+    });
+
+    // ---- 漂浮装饰 ----
+    const fx = document.querySelector('.fx');
+    const GLYPHS = ['♪', '♫', '♬', '♩', '★', '✧', '✦', '♡', '✨', '🎵', '🎶', '🎸', '🎤', '🥁', '🎹', '🎧'];
+    const COLORS = ['#ff5fa2', '#8a6cff', '#38bdf0', '#ff9f43', '#4fd6a8', '#f06292'];
+    const COUNT = 30;
+    for (let i = 0; i < COUNT; i++) {
+      const s = document.createElement('span');
+      s.textContent = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+      s.style.left = (Math.random() * 98) + 'vw';
+      s.style.fontSize = (16 + Math.random() * 26) + 'px';
+      s.style.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+      s.style.setProperty('--d', (14 + Math.random() * 16) + 's');
+      s.style.setProperty('--delay', (-Math.random() * 30) + 's');
+      s.style.setProperty('--dx', ((Math.random() * 80) - 40) + 'px');
+      s.style.setProperty('--o', (0.2 + Math.random() * 0.35).toFixed(2));
+      fx.appendChild(s);
+    }
+
+    // ---- 邦多利人物装饰（本地文件 → 在线素材 → SVG 兜底） ----
+    function chibiSVG(o) {
+      return '<svg class="char-svg" viewBox="0 0 120 168" xmlns="http://www.w3.org/2000/svg">'
+        + '<path d="M30 96 C26 52 48 34 60 34 C72 34 94 52 90 96 L88 116 L32 116 Z" fill="' + o.hairDark + '"/>'
+        + '<circle cx="60" cy="58" r="30" fill="#ffe3d2"/>'
+        + '<path d="M30 58 C30 35 47 27 60 27 C73 27 90 35 90 58 C81 42 72 38 60 38 C48 38 39 42 30 58 Z" fill="' + o.hair + '"/>'
+        + '<path d="M30 60 C28 86 33 100 35 108 L47 98 C42 80 42 66 42 58 Z" fill="' + o.hair + '"/>'
+        + '<path d="M90 60 C92 86 87 100 85 108 L73 98 C78 80 78 66 78 58 Z" fill="' + o.hair + '"/>'
+        + '<ellipse cx="49" cy="59" rx="5" ry="7.5" fill="#3b2b46"/>'
+        + '<circle cx="51" cy="55.5" r="1.8" fill="#fff"/>'
+        + '<ellipse cx="71" cy="59" rx="5" ry="7.5" fill="#3b2b46"/>'
+        + '<circle cx="73" cy="55.5" r="1.8" fill="#fff"/>'
+        + '<circle cx="39" cy="70" r="5" fill="#ffb6c8" opacity=".85"/>'
+        + '<circle cx="81" cy="70" r="5" fill="#ffb6c8" opacity=".85"/>'
+        + '<path d="M55 70 Q60 75 65 70" stroke="#d9798f" stroke-width="2.2" fill="none" stroke-linecap="round"/>'
+        + '<path d="M38 94 L82 94 L88 146 L32 146 Z" fill="' + o.dress + '"/>'
+        + '<path d="M48 94 L72 94 L76 118 L44 118 Z" fill="' + o.accent + '" opacity=".9"/>'
+        + o.top + o.item
+        + '</svg>';
+    }
+    var FALLBACKS = {
+      taki: {
+        hair: '#3a3a52', hairDark: '#26263a', dress: '#5a5a72', accent: '#b9b9d6',
+        top: '<path d="M60 27 Q55 15 69 11" stroke="#3a3a52" stroke-width="3" fill="none" stroke-linecap="round"/>',
+        item: '<g transform="translate(60,112)"><g transform="rotate(22)"><rect x="-2" y="-42" width="4.5" height="52" rx="2.2" fill="#c98a5a"/><circle cx="0" cy="-42" r="3.4" fill="#e8b64f"/></g><g transform="rotate(-22)"><rect x="-2" y="-42" width="4.5" height="52" rx="2.2" fill="#c98a5a"/><circle cx="0" cy="-42" r="3.4" fill="#e8b64f"/></g></g>'
+      },
+      soyo: {
+        hair: '#7a5a46', hairDark: '#5d4434', dress: '#f2e9df', accent: '#c9a67f',
+        top: '<circle cx="60" cy="25" r="5" fill="#e8b64f"/>',
+        item: '<g transform="translate(60,118) rotate(8)"><rect x="-3.5" y="-54" width="7" height="64" rx="3.5" fill="#6b5b3e"/><path d="M0 -14 C10 -14 12 2 0 15 C-12 2 -10 -14 0 -14 Z" fill="#b08bff"/><circle cx="0" cy="19" r="3" fill="#6b5b3e"/></g>'
+      },
+      anon: {
+        hair: '#ff9ec4', hairDark: '#e870a2', dress: '#ffffff', accent: '#ff9ec4',
+        top: '<circle cx="45" cy="26" r="9" fill="#ff9ec4"/><circle cx="75" cy="26" r="9" fill="#ff9ec4"/>',
+        item: '<g transform="translate(60,118) rotate(-14)"><rect x="-3" y="-42" width="6" height="54" rx="3" fill="#7a4a3a"/><circle cx="0" cy="16" r="17" fill="#ff9ec4"/><circle cx="0" cy="16" r="7" fill="#7a4a3a"/><rect x="-14" y="-2" width="28" height="5" rx="2.5" fill="#7a4a3a"/></g>'
+      },
+      rana: {
+        hair: '#e8e6f0', hairDark: '#c9c6d8', dress: '#f0f8ee', accent: '#8ed0a0',
+        top: '<path d="M42 34 L38 18 L50 28 Z" fill="#e8e6f0"/><path d="M78 34 L82 18 L70 28 Z" fill="#e8e6f0"/>',
+        item: '<g transform="translate(60,118) rotate(10)"><rect x="-3" y="-42" width="6" height="54" rx="3" fill="#4e6e58"/><path d="M0 -2 C11 -2 13 12 0 22 C-13 12 -11 -2 0 -2 Z" fill="#8ed0a0"/></g>'
+      },
+      tomori: {
+        hair: '#5b6b7d', hairDark: '#3f4b5c', dress: '#4a5a78', accent: '#9ab0cc',
+        top: '<path d="M60 27 l2.6 5.2 5.8 .8 -4.2 4 1 5.7 -5.2 -2.7 -5.2 2.7 1 -5.7 -4.2 -4 5.8 -.8 Z" fill="#dfe6f0"/>',
+        item: '<g transform="translate(60,100)"><circle cx="0" cy="-8" r="9" fill="#8a7a9e"/><circle cx="0" cy="-8" r="9" fill="none" stroke="#6d5d81" stroke-width="2"/><rect x="-3" y="2" width="6" height="18" rx="3" fill="#555"/><rect x="-12" y="20" width="24" height="4" rx="2" fill="#555"/></g>'
+      }
+    };
+    var CHAR_LIST = [
+      { cls: 'c1', name: 'taki', web: 'https://commons.moegirl.org.cn/Special:FilePath/Chibi_Taki.png' },
+      { cls: 'c2', name: 'soyo', web: 'https://commons.moegirl.org.cn/Special:FilePath/Chibi_Soyo.png' },
+      { cls: 'c3', name: 'anon', web: 'https://commons.moegirl.org.cn/Special:FilePath/Chibi_Anon_1.png' },
+      { cls: 'c4', name: 'rana', web: 'https://commons.moegirl.org.cn/Special:FilePath/Chibi_Raana.png' },
+      { cls: 'c5', name: 'tomori', web: 'https://commons.moegirl.org.cn/Special:FilePath/Chibi_Tomori.png' }
+    ];
+    var charsBox = document.querySelector('.chars');
+    CHAR_LIST.forEach(function (c) {
+      var d = document.createElement('div');
+      d.className = 'char ' + c.cls;
+      d.innerHTML = chibiSVG(FALLBACKS[c.name]);
+      var img = document.createElement('img');
+      img.className = 'char-img';
+      img.alt = '';
+      var step = 0;
+      img.addEventListener('load', function () {
+        var svg = d.querySelector('.char-svg');
+        if (svg) svg.style.visibility = 'hidden';
+        img.style.display = 'block';
+      });
+      img.addEventListener('error', function () {
+        step += 1;
+        if (step === 1) {
+          img.src = c.web;
+        }
+      });
+      img.src = 'characters/' + c.name + '.png';
+      d.appendChild(img);
+      charsBox.appendChild(d);
+    });
+  })();
+</script>
+</body>
+</html>

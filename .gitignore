@@ -1,2 +1,4 @@
 .git-old-by-sandbox/
 deploy.bat
+download-chars.bat
+download-chars.ps1

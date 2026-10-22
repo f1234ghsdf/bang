@@ -22,6 +22,9 @@
   }
 
   * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  button, input { font-family: inherit; }
+  button, a { -webkit-tap-highlight-color: transparent; }
 
   html, body { margin: 0; padding: 0; }
 
@@ -499,11 +502,31 @@
   }
 
   @media (max-width: 640px) {
-    .stage { padding-top: 20px; }
-    .ctl-row { flex-wrap: wrap; }
-    .progress { order: 5; flex-basis: 100%; height: 16px; }
-    .vol { width: 80px; }
-    .topbar { margin-bottom: 10px; }
+    .stage { width: 100%; padding: 10px 10px 34px; }
+    .player { padding: 8px; border-radius: 14px; }
+    .video-wrap { clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px)); }
+    video { max-height: 62vh; }
+    .topbar { margin-bottom: 10px; padding: 0 2px; }
+    .np-label { font-size: 12px; letter-spacing: 2px; }
+    .live { font-size: 10px; padding: 3px 8px; }
+    .ctl-row { flex-wrap: wrap; gap: 8px; }
+    .ctl { width: 38px; height: 38px; font-size: 15px; border-radius: 9px; }
+    .ctl.play { width: 44px; height: 44px; font-size: 17px; }
+    .time { font-size: 12px; }
+    .progress { order: 5; flex-basis: 100%; height: 16px; margin-top: 2px; }
+    .vol { width: 70px; }
+    .speed-row { gap: 8px; margin-top: 10px; padding-top: 10px; }
+    .speed-label { font-size: 11px; }
+    .speed-btn { padding: 8px 11px; font-size: 13px; }
+    .hint { font-size: 12px; padding: 6px 12px; bottom: 10px; }
+    .big-play { width: 70px; height: 70px; font-size: 26px; }
+    .foot { font-size: 11px; }
+  }
+
+  @media (max-width: 380px) {
+    .vol { display: none; }
+    .ctl { width: 36px; height: 36px; }
+    .ctl.play { width: 42px; height: 42px; }
   }
 
   @media (max-width: 760px) {
@@ -800,7 +823,7 @@
     const fx = document.querySelector('.fx');
     const GLYPHS = ['♪', '♫', '♬', '♩', '★', '✧', '✦', '♡', '✨', '🎵', '🎶', '🎸', '🎤', '🥁', '🎹', '🎧'];
     const COLORS = ['#ff5fa2', '#8a6cff', '#38bdf0', '#ff9f43', '#4fd6a8', '#f06292'];
-    const COUNT = 30;
+    const COUNT = window.innerWidth < 640 ? 14 : 30;
     for (let i = 0; i < COUNT; i++) {
       const s = document.createElement('span');
       s.textContent = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
